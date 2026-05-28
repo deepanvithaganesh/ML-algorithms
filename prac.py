@@ -33,7 +33,6 @@ print(f"Lowercase: {text.lower()}")
 print(f"First 3 characters: {text[:3]}")
 
 print("\n" + "=" * 50)
-print("3. INTEGERS")
 print("=" * 50)
 # Integers are whole numbers
 num1 = 10
@@ -71,11 +70,6 @@ is_employed = False
 
 print(f"is_student: {is_student}")
 print(f"is_employed: {is_employed}")
-
-# Boolean operations
-print(f"True and False: {True and False}")
-print(f"True or False: {True or False}")
-print(f"not True: {not True}")
 
 # Comparison operations return booleans
 print(f"10 > 5: {10 > 5}")
@@ -121,8 +115,6 @@ print(f"bool(0): {bool(0)}")
 print("\n" + "=" * 50)
 print("7. USER INPUT")
 print("=" * 50)
-
-# Taking input from user
 
 user_name = input("Enter your name: ")
 print(f"Hello, {user_name}!")
