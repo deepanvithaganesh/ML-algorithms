@@ -12,6 +12,15 @@ products = {
 # Shopping Cart (List)
 cart = []
 
+# Discounts (Dictionary)
+discounts = {
+    "SALE10": {"type": "percent", "value": 10, "min_total": 0},
+    "FLAT500": {"type": "flat", "value": 500, "min_total": 5000}
+}
+
+def format_price(amount):
+    return int(amount) if amount == int(amount) else f"{amount:.2f}"
+
 while True:
 
     print("\n===== E-Commerce System =====")
@@ -91,8 +100,28 @@ while True:
             print("-------------------")
             print("Total Amount: ₹", total)
 
-    elif choice == "5":
+            coupon = input("Enter discount code (or press Enter to skip): ").strip().upper()
+            discount = 0
+            discount_description = "No discount applied"
 
+            if coupon in discounts:
+                offer = discounts[coupon]
+                if total >= offer["min_total"]:
+                    discount = total * offer["value"] / 100 if offer["type"] == "percent" else offer["value"]
+                    discount_description = f"{offer['value']}% off" if offer["type"] == "percent" else f"₹{offer['value']} off"
+                else:
+                    print(f"Coupon '{coupon}' requires a minimum purchase of ₹{offer['min_total']}.")
+            elif coupon:
+                print("Invalid discount code.")
+
+            payable = max(total - discount, 0)
+            print("Discount:", discount_description)
+            if discount > 0:
+                print("Discount Amount: ₹", format_price(discount))
+            print("Amount Payable: ₹", format_price(payable))
+
+
+    elif choice == "5":
         print("Thank You For Shopping!")
         break
 
