@@ -1,40 +1,67 @@
-print("=== Menu ===")
-print("1. Pizza - $10")
-print("2. Burger - $5")
-print("3. Salad - $7")
-print("4. Soda - $2")
-print("5. Ice Cream - $3")
-item_total_cost_overall = 0
-n = int(input("Enter the number of items you want to order: "))
-for i in range(1, n+1):
-    choice=int(input("Enter the item number you want to order: "))
-    quantity=int(input("Enter the quantity: "))
-    if choice==1:
-        price=100
-        print("You ordered", quantity, "Pizza(s) for $", price)
-    elif choice==2:
-        price=50
-        print("You ordered", quantity, "Burger(s) for $", price)
-    elif choice==3:
-        price=27         
-        print("You ordered", quantity, "Salad(s) for $", price)
-    elif choice==4:
-        price=2 
-        print("You ordered", quantity, "Soda(s) for $", price)
-    elif choice==5:
-        price=30
-        print("You ordered", quantity, "Ice Cream(s) for $", price)
+print("========= RESTAURANT MENU =========")
+print("1. Pizza       - ₹250")
+print("2. Burger      - ₹120")
+print("3. Pasta       - ₹180")
+print("4. Sandwich    - ₹100")
+print("5. Cold Drink  - ₹50")
+
+n = int(input("\nEnter the number of different items you want to order: "))
+
+total_bill = 0
+
+for i in range(1, n + 1):
+
+    print("\nItem", i)
+
+    choice = int(input("Enter item number: "))
+    quantity = int(input("Enter quantity: "))
+
+    if choice == 1:
+        item = "Pizza"
+        price = 250
+
+    elif choice == 2:
+        item = "Burger"
+        price = 120
+
+    elif choice == 3:
+        item = "Pasta"
+        price = 180
+
+    elif choice == 4:
+        item = "Sandwich"
+        price = 100
+
+    elif choice == 5:
+        item = "Cold Drink"
+        price = 50
+
     else:
-        print("Invalid choice")
-        price = 0
+        print("Invalid Item")
+        continue
 
-item_total_cost = price * quantity
-item_total_cost_overall+= item_total_cost
-if item_total_cost_overall <= 1000:
-    discount = item_total_cost_overall * 0.1
-    item_total_cost_overall -= discount
-    print("You got a discount of $", discount)
-else:
-    print("No discount applied")
-print("Total cost: $", item_total_cost_overall)
+    item_total = price * quantity
+    total_bill += item_total
 
+    print(item, "x", quantity, "= ₹", item_total)
+
+# Discount
+discount = 0
+
+if total_bill > 1000:
+    discount = total_bill * 0.10
+
+bill_after_discount = total_bill - discount
+
+# GST
+gst = bill_after_discount * 0.05
+
+final_bill = bill_after_discount + gst
+
+print("\n========== FINAL BILL ==========")
+print("Subtotal      : ₹", total_bill)
+print("Discount      : ₹", discount)
+print("GST (5%)      : ₹", gst)
+print("-------------------------------")
+print("Final Amount  : ₹", final_bill)
+print("Thank You! Visit Again.")
