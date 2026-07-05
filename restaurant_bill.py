@@ -1,10 +1,8 @@
 print("========= RESTAURANT MENU =========")
-print("1. Pizza       - ₹250")
-print("2. Burger      - ₹120")
-print("3. Pasta       - ₹180")
-print("4. Sandwich    - ₹100")
-print("5. Cold Drink  - ₹50")
-
+menu=("Pizza", "Burger", "Pasta", "Sandwich", "Cold Drink")
+cost = {"Pizza": 250, "Burger": 120, "Pasta": 180, "Sandwich": 100, "Cold Drink": 50}
+order_list=[]
+order_set=set()
 n = int(input("\nEnter the number of different items you want to order: "))
 
 total_bill = 0
@@ -16,34 +14,21 @@ for i in range(1, n + 1):
     choice = int(input("Enter item number: "))
     quantity = int(input("Enter quantity: "))
 
-    if choice == 1:
-        item = "Pizza"
-        price = 250
-
-    elif choice == 2:
-        item = "Burger"
-        price = 120
-
-    elif choice == 3:
-        item = "Pasta"
-        price = 180
-
-    elif choice == 4:
-        item = "Sandwich"
-        price = 100
-
-    elif choice == 5:
-        item = "Cold Drink"
-        price = 50
-
+    if choice == 6:
+        print("Exiting the order process.")
+        break
     else:
-        print("Invalid Item")
-        continue
+        if choice < 1 or choice > 5:
+            print("Invalid choice. Please select a valid item number.")
+            continue
 
-    item_total = price * quantity
-    total_bill += item_total
 
-    print(item, "x", quantity, "= ₹", item_total)
+        item = menu[choice - 1]
+        total = cost[item] * quantity
+        print(f"{item} x {quantity} = ₹{total}")
+        order_list.append((item, quantity))
+        order_set.add(item)
+        total_bill += total
 
 # Discount
 discount = 0
@@ -59,9 +44,11 @@ gst = bill_after_discount * 0.05
 final_bill = bill_after_discount + gst
 
 print("\n========== FINAL BILL ==========")
-print("Subtotal      : ₹", total_bill)
-print("Discount      : ₹", discount)
+print("List of items      :", order_list)
+print("Orders Placed     :", order_set)
+print("Total Bill       : ₹", total_bill)
 print("GST (5%)      : ₹", gst)
+print("Discount (10%) : ₹", discount)
 print("-------------------------------")
 print("Final Amount  : ₹", final_bill)
 print("Thank You! Visit Again.")
